@@ -1,0 +1,98 @@
+<html>
+<head>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.5/p5.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.5/addons/p5.dom.js"></script>
+	<script src="../Library/p5.speech.js"></script>
+	<script>
+
+	var myRec = new p5.SpeechRec();
+	var game1 = false;
+	var game2 = false;
+	var game3 = false;
+	var end = false;
+    myRec.continuous = true;
+
+	function setup()
+	{
+		createCanvas(1420, 800);
+		background(255, 255, 255);
+		fill(0, 0, 0, 255);
+		textSize(46);
+		textAlign(CENTER);
+		text("Say 'Start' to play a game!", width/2, height/2);
+		myRec.onResult = Colours;
+		myRec.start();
+	}
+
+	function draw()
+	{
+
+	}
+
+	function Colours()
+	{
+		if(myRec.resultValue==true) {
+			
+			if(myRec.resultString == "start") {
+			background(255,255,255);
+			text("Pick the correct cirle by picking the correct corner:" + "\n" + "top left, top right, bottom left, bottom right." + "\n" + "Say 'Continue' to continue.", width/2, height/2);
+            game1 = true;
+			} 
+			else if(myRec.resultString == "continue" && game1 == true) {
+			background(255,255,255);
+			text("Pick the blue circle.", width/2, height/2);
+			noStroke(); 
+			ellipseMode(RADIUS);
+            ellipse(200, 200, 150, 150);
+			ellipse(1220, 200, 150, 150);
+			ellipse(200, 600, 150, 150);
+			fill(0,0,255);
+			ellipse(1220, 600, 150, 150);
+            game2 = true;
+			}
+			else if(myRec.resultString == "bottom right" && game2 == true) {
+			background(255,255,255);
+			fill(0,0,0);
+			text("Pick the blue circle.", width/2, height/2);
+			fill(0,0,0);
+			noStroke(); 
+			ellipseMode(RADIUS);
+			fill(0,0,0);
+            ellipse(200, 200, 150, 150);
+			fill(0,0,255);
+			ellipse(1220, 200, 150, 150);
+			fill(0,0,0);
+			ellipse(200, 600, 150, 150);
+			ellipse(1220, 600, 150, 150);
+            game3 = true;
+			}
+			else if(myRec.resultString == "top right" && game3 == true) {
+			background(255,255,255);
+			fill(0,0,0);
+			text("Pick the blue circle.", width/2, height/2);
+			fill(0,0,0);
+			noStroke(); 
+			ellipseMode(RADIUS);
+			fill(0,0,0);
+            ellipse(200, 200, 150, 150);
+			ellipse(1220, 200, 150, 150);
+			fill(0,0,255);
+			ellipse(200, 600, 150, 150);
+			fill(0,0,0);
+			ellipse(1220, 600, 150, 150);
+            end = true;
+			} else if(myRec.resultString == "bottom left" && end == true) {
+			background(255,255,255);
+			text("You have completed the game" + "\n" + "Congratulations!", width/2, height/2);
+			}
+		console.log(myRec.resultString);
+
+	}
+  }
+
+
+</script>
+</head>
+<body>
+</body>
+</html>

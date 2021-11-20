@@ -1,0 +1,61 @@
+<html>
+<head>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.5/p5.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.5/addons/p5.dom.js"></script>
+	<script src="../Library/p5.speech.js"></script>
+	<script>
+
+	var myVoice = new p5.Speech(); 
+
+
+	var title, input, input2, input3, input4, speakbutton;
+
+
+
+	function setup()
+	{
+   
+		// input dialog:
+		input = createInput("Enter the name of a place");
+		input.style("width", 400);
+  		input.position(20, 100);
+
+        input2 = createInput("Enter the name of a tourist attraction");
+		input2.style("width", 400);
+  		input2.position(20, 150);
+
+        input3 = createInput("Enter the name of a person");
+		input3.style("width", 400);
+  		input3.position(20, 200);
+
+        input4 = createInput("Enter the name of a food");
+		input4.style("width", 400);
+  		input4.position(20, 250);
+
+		// button:
+		speakbutton = createButton('Speak');
+  		speakbutton.position(20, 300);
+  		speakbutton.mousePressed(doSpeak);
+  		
+
+	}
+
+
+
+	function draw()
+	{
+		// why draw when you can click?
+	}
+
+	function doSpeak()
+	{
+		
+		myVoice.speak("I recently took a trip to" + " " + input.value() + ". " + "The first thing I did when I got there was visit their very popular " + input2.value() + " " + "where" + input3.value() + " " + "was giving a live musical performance. We ate" +  input4.value() + "while we listened."); // debug printer for voice options
+	}
+
+</script>
+</head>
+<body>
+    <h2>Madlibs!</h2>
+</body>
+</html>

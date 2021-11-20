@@ -1,0 +1,65 @@
+<html>
+<head>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.5/p5.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.5/addons/p5.dom.js"></script>
+	<script src="../Library/p5.speech.js"></script>
+	<script>
+
+	var myRec = new p5.SpeechRec(); // new P5.SpeechRec object
+    myRec.continuous = true;
+
+	function setup()
+	{
+		// graphics stuff:
+		createCanvas(1420, 800);
+		background(255, 255, 255);
+		fill(0, 0, 0, 255);
+		textSize(46);
+		textAlign(CENTER);
+		text("Pick a colour!", width/2, height/2);
+		myRec.onResult = Colours;
+		myRec.start();
+	}
+
+	function draw()
+	{
+
+	}
+
+	function Colours()
+	{
+		if(myRec.resultValue==true) {
+			
+			if(myRec.resultString == "red") {
+				background(192, 0, 0);			
+			} else if(myRec.resultString == "green") {
+				background(0, 192, 0);				
+			} else if(myRec.resultString == "blue") {
+				background(0, 0, 192);
+		    } else if(myRec.resultString == "yellow") {
+				background(245, 245, 66);
+			} else if(myRec.resultString == "purple") {
+				background(167, 66, 245);
+			} else if(myRec.resultString == "orange") {
+				background(247, 101, 27);
+			} else if(myRec.resultString == "pink") {
+				background(247, 27, 244);
+			} else if(myRec.resultString == "brown") {
+				background(82, 35, 11);
+			} else if(myRec.resultString == "cyan") {
+				background(25, 219, 230);
+			} else if(myRec.resultString == "black") {
+				background(0, 0, 0);
+			} else if(myRec.resultString == "white") {
+				background(255, 255, 255);
+		console.log(myRec.resultString);
+		text(myRec.resultString, width/2, height/2);
+	}
+  }
+}
+
+</script>
+</head>
+<body>
+</body>
+</html>
